@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>Spring-Boot Básico</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" th:href="@{/image/favicon.png}" />
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+<link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css}"
+	rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+</head>
+<body>
+	<header th:replace="fragments/header :: cabecalho">
+		<div>Header</div>
+	</header>
+
+	<div class="layout-main">
+		<aside>
+			<nav th:replace="fragments/sidebar :: nav-sidebar">
+				<span>Menu</span>
+			</nav>
+		</aside>
+
+		<section layout:fragment="corpo">
+			<div>Conteudo Principal das paginas</div>
+		</section>
+
+	</div>
+
+	<footer th:replace="fragments/footer :: rodape">
+		<div>Footer</div>
+	</footer>
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/jquery-mask-plugin/dist/jquery.mask.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('[data-toggle="popover"]').popover();
+		});
+
+		$(document).ready(function() {
+			$(".navbar-toggle").click(function() {
+				$(".sidebar").toggleClass("sidebar-open");
+			})
+		});
+
+		//primeiramnete iremos uma varivel chamada url inicializando como vazia
+		var url = '';
+
+		//funcao do jquery para recuperar o valor da url que temos na tag button  
+		$('button[id*="btn_"]').click(function() {//quando clicar no boatao irei identificar que cliquei do botao a partir da experessao abaixo
+			url = "/" + $(this).attr('id').split("_")[1];
+		});// a variavel url vair receber a url e iremos concatenar com o valor do id q temos na tag button, faremos a partir a partir da funcao do jquery que e o $(this) qu faz com que o jquery utilize os valores que temos do componente que estamos utilizando da operacao o button iremos recuperar a partir do metodo attr a partir do id iremos atraves do split ira dividir a string antes do underline e depois do underline, pondo no vector dai a posicao [1]
+
+		
+		//funcao que sera disparada quando clicada quando clicar no botao de confirmar do modal a accao ira cair nesta funcao em document.location.href ira fazer a solicitacao para a pagina e controller
+		$('#ok_confirm').click(function() {
+			document.location.href = url;
+		});
+	</script>
+
+</body>
+</html>
