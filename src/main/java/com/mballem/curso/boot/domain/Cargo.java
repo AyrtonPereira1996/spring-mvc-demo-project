@@ -51,4 +51,6 @@ public class Cargo extends AbstractEntity<Long> {
 		this.funcionarios = funcionarios;
 	}
 
+
+
 }

@@ -8,7 +8,7 @@ import com.mballem.curso.boot.domain.Cargo;
 import com.mballem.curso.boot.service.CargoService;
 
 @Component
-public class StringToCargoConversor implements Converter<String, Cargo> {
+public class StringToCargoConverter implements Converter<String, Cargo> {
 
 	@Autowired
 	private CargoService cargoService;
